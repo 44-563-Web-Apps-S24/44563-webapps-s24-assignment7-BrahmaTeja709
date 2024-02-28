@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .flex-container {
+              display: flex;  flex-direction:row;
+              background-color: red;
+          }
+         
+        .flex-container > div {  /*div children of the flex container*/
+          background-color: #f1f1f1;
+          margin: 10px;  padding: 20px;  font-size: 30px;
+        }
+         
+        /* Responsive layout */
+        @media (max-width: 600px) {
+             .flex-container{
+                 flex-direction:column;
+                 background-color: green;
+              }
+            }
+        </style>
+        <title>
+              divList Page
+        </title>
+    </head>
+
+    <body>
+        <h1>Kunchala Brahma Teja builds list with divs</h1>
+    <input type="text" id="text1">
+        <div class="flex-container" id="target">
+          <div class="divlist">row item 1</div>  
+          <div class="divlist">row item 2</div>  
+          <div class="divlist">row item 3</div>  
+        </div>
+   
+    <p> Press the button to create an new element of type div and then add it to the container.
+        </p>
+        <button onclick="makeNewDiv()">Add end</button>
+        <button onclick="addFront()">Add front</button>
+        <button onclick="remove()">Remove</button>
+        <button onclick="swapItems()">Swap</button>
+  
+        <script>
+            function makeNewDiv() {
+                var inputValue = document.getElementById("text1").value;
+    
+                if (inputValue.trim() !== "") {
+                    var element = document.createElement("div");
+                    element.innerHTML = inputValue;
+                    element.className = "divlist";
+                    element.style.color = "orange";
+    
+                    var container = document.getElementById('target');
+                    container.appendChild(element);
+                } else {
+                    alert("Please enter text for the new element.");
+                }
+            }
+    
+            function remove() {
+                const divListItems = document.getElementsByClassName("divlist");
+                const length = divListItems.length;
+    
+                if (length > 0) {
+                    var middleIndex = Math.floor(length / 2);
+                    divListItems[middleIndex].remove();
+                }
+            }
+    
+            function addFront() {
+                var inputValue = document.getElementById("text1").value;
+    
+                if (inputValue.trim() !== "") {
+                    var newElement = document.createElement("div");
+                    newElement.innerHTML = inputValue;
+                    newElement.className = "divlist";
+    
+                    var container = document.querySelector(".flex-container");
+                    container.insertBefore(newElement, container.firstChild);
+                } else {
+                    alert("Please enter text for the new element.");
+                }
+            }
+    
+            function swapItems() {
+                const divListItems = document.getElementsByClassName("divlist");
+                var index1 = Math.floor(Math.random() * divListItems.length);
+                var index2 = Math.floor(Math.random() * divListItems.length);
+    
+                while (index1 === index2) {
+                    index2 = Math.floor(Math.random() * divListItems.length);
+                }
+    
+                var temp = divListItems[index1].cloneNode(true);
+                divListItems[index1].parentNode.replaceChild(divListItems[index2], divListItems[index1]);
+                divListItems[index2].parentNode.replaceChild(temp, divListItems[index2].nextSibling);
+            }
+        </script>
+      </body>
+</html>
