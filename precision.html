@@ -25,28 +25,26 @@
         console.log(endTime);
     }
 
-    document.getElementById('stopButton').onclick = recordEndTime;
+    document.getElementById('stopBtn').onclick = recordEndTime;
 
-    function startCountdown() {
-        for (let countdown = 5; countdown > 0; countdown--) {
+    function startTime() {
+        for (let count = 0; count < 5; count++) {
             setTimeout(function() {
-                document.getElementById('counterDisplay').innerHTML = countdown;
-            }, (5 - countdown) * 1000);
+                document.getElementById('counter').innerHTML = count;
+            }, (4 - count) * 1000);
         }
-
         setTimeout(function() {
             if (endTime === undefined) {
-                document.getElementById('result').innerHTML = "Too Slow";
+                document.getElementById('target').innerHTML = "Too Slow";
             } else {
-                let elapsedDuration = endTime - (Date.now() - 5000);
-                document.getElementById('result').innerHTML = "Elapsed time: " + elapsedDuration + "ms";
+                let elapsedTime = endTime - (Date.now() - 4000);
+                document.getElementById('target').innerHTML = "Time was " + elapsedTime + "ms";
             }
-        }, 5000);
+        }, 4000);
     }
 
-    document.getElementById('startButton').onclick = startCountdown;
+    document.getElementById('startBtn').onclick = startTime;
 </script>
-
  
 </body>
 </html>
