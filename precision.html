@@ -28,7 +28,8 @@
     document.getElementById('stopBtn').onclick = recordEndTime;
 
     function startTime() {
-        for (let count = 0; count < 5; count++) {
+        random = Math.floor(Math.random() * 9)+2;
+        for (let count = 0; count < random; count++) {
             setTimeout(function() {
                 document.getElementById('counter').innerHTML = count;
             }, (4 - count) * 1000);
