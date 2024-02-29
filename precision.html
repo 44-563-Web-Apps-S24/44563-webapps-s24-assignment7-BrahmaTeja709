@@ -28,14 +28,17 @@
     document.getElementById('stopBtn').onclick = recordEndTime;
 
     function startTime() {
+
         random = Math.floor(Math.random() * 9)+2;
         for (let count = 0; count < random; count++) {
+
             setTimeout(function() {
                 document.getElementById('counter').innerHTML = count;
             }, (4 - count) * 1000);
         }
         setTimeout(function() {
             if (endTime === undefined) {
+                
                 document.getElementById('target').innerHTML = "Too Slow";
             } else {
                 let elapsedTime = endTime - (Date.now() - 4000);
@@ -43,6 +46,8 @@
             }
         }, 4000);
     }
+    
+
 
     document.getElementById('startBtn').onclick = startTime;
 </script>
